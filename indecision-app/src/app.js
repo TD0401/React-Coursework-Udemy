@@ -1,7 +1,34 @@
-//JSX - Javascript XML -- this is not understandable by browser, so compile into plain java script, use babel - babeljs.io
-var template = <p>This is JSX from app.js and now changing</p>;
+let count =0;
 
-//var template = React.createElement("p", null, "This is JSX from app.js");
-var appRoot = document.getElementById("app");
+const addone = ()=> {
+    count++ ;
+    reactAppRenderTemplate();
+};
 
-ReactDOM.render(template,appRoot);
+const minusone = ()=> {
+    count--; 
+    reactAppRenderTemplate();
+};
+
+const reset = ()=> {
+    count =0;
+    reactAppRenderTemplate();
+};
+
+const appRoot =  document.getElementById("app");
+
+//JSX has className instead of class attribute because in ES6 class is a reserved key word
+const reactAppRenderTemplate = () => {
+    const template = (
+        <div>
+            <h1>Count: {count}</h1>
+            <button onClick={addone}>+1</button>
+            <button onClick={minusone}>-1</button>
+            <button onClick={reset}>reset</button>
+        </div>
+    );
+
+    ReactDOM.render(template,appRoot);
+}
+
+reactAppRenderTemplate();
