@@ -1,34 +1,69 @@
-let count =0;
+const appRoot = document.getElementById("app");
+var app  = {
+    title:"some title",
+    subtitle:"this is subtitle",
+    options:['movies','shopping']
 
-const addone = ()=> {
-    count++ ;
-    reactAppRenderTemplate();
 };
 
-const minusone = ()=> {
-    count--; 
-    reactAppRenderTemplate();
-};
+function getOptions(){
+    if(app.options && app.options.length >0)
+        return <p>here are {app.options.length} options</p>;
+    else
+        return <p> No options</p>;
+}
 
-const reset = ()=> {
-    count =0;
-    reactAppRenderTemplate();
-};
+const onFormSubmit = (e) => {
+    e.preventDefault();
+   const option = e.target.elements.option.value;
+   if (option){
+       app.options.push(option);
+       e.target.elements.option.value = '';
+       renderTemplate();
+   }
+}
 
-const appRoot =  document.getElementById("app");
+const removeall = (e) => {
+    app.options = [];
+    renderTemplate();
+}
 
-//JSX has className instead of class attribute because in ES6 class is a reserved key word
-const reactAppRenderTemplate = () => {
-    const template = (
+const onMakeDecision = (e) => {
+    const randomnNum = Math.floor(Math.random() * app.options.length);
+    const selected = app.options[randomnNum];
+    alert(selected);
+}
+
+//JSX - Javascript XML -- this is not understandable by browser, so compile into plain java script, use babel - babeljs.io
+// only one root element
+// react events - synthetic events page by Facebook
+const renderTemplate = () => {
+    var template = (
         <div>
-            <h1>Count: {count}</h1>
-            <button onClick={addone}>+1</button>
-            <button onClick={minusone}>-1</button>
-            <button onClick={reset}>reset</button>
-        </div>
-    );
+            <h1>{app.title}</h1>
+            {app.subtitle && <p>{app.subtitle}</p>}
+            {getOptions()}
+            <ol>
+            {
+                //keys are imporant in array in JSX to uniquely identify else it throws error
+                app.options.map((opt) => {
+                    return  <li key={opt}>{opt}</li>
+                })
+            } 
+            </ol>
+            
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option" />
+                <button>Add Option</button>
+                
+            </form>
+            <button onClick={removeall}>Remove All</button>
+            <button onClick={onMakeDecision} disabled={app.options.length === 0}>What should I do?</button>
+        </div>);
+
+    //var template = React.createElement("p", null, "This is JSX from app.js");
 
     ReactDOM.render(template,appRoot);
 }
 
-reactAppRenderTemplate();
+renderTemplate();

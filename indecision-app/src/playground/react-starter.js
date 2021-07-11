@@ -76,3 +76,39 @@ var template3 = (
 
 var appRoot3 = document.getElementById("app3");
 ReactDOM.render(template3,appRoot3);
+
+
+let count =0;
+
+const addone = ()=> {
+    count++ ;
+    reactAppRenderTemplate();
+};
+
+const minusone = ()=> {
+    count--; 
+    reactAppRenderTemplate();
+};
+
+const reset = ()=> {
+    count =0;
+    reactAppRenderTemplate();
+};
+
+
+
+//JSX has className instead of class attribute because in ES6 class is a reserved key word
+const reactAppRenderTemplate = () => {
+    const template = (
+        <div>
+            <h1>Count: {count}</h1>
+            <button onClick={addone}>+1</button>
+            <button onClick={minusone}>-1</button>
+            <button onClick={reset}>reset</button>
+        </div>
+    );
+
+    ReactDOM.render(template,appRoot);
+}
+
+reactAppRenderTemplate();
