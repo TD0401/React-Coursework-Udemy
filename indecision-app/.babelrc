@@ -1,0 +1,10 @@
+// used to for passing the arguments to babel while using webpack
+{
+    "presets": [
+        "env",
+        "react"
+    ],
+    "plugins": [
+        "transform-class-properties"
+    ]
+}
