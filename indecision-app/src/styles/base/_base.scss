@@ -1,0 +1,19 @@
+//_ to denote partial css
+
+html{
+    font-size: 62.5%;     // 1 rem = 16px and 16*62.5 = 10, so we can use base 10 rem
+}
+
+body {
+    font-family:  Helvetica, Arial, sans-serif;
+    font-size: $m-size;
+    background-color: $dark-blue;
+}
+
+button{
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default ;
+}

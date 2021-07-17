@@ -3,7 +3,7 @@ import React from 'react';
 //converted class based components to stateless components
 const Action =(props) =>(
         <div>
-            <button disabled={!props.hasOptions} onClick={props.handlePick}>What should I do?</button>
+            <button className="big-button" disabled={!props.hasOptions} onClick={props.handlePick}>What should I do?</button>
         </div>
 );
 
